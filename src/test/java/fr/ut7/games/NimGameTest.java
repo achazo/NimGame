@@ -4,9 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by lapboss on 07/12/15.
- */
 public class NimGameTest {
 
     @Test
