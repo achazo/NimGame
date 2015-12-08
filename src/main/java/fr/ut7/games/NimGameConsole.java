@@ -11,13 +11,13 @@ public class NimGameConsole {
         players.add(getPlayerName());
         players.add(getPlayerName());
         NimGame game = new NimGame(players, 10);
-        gameLoop(players, game);
+        gameLoop(game);
     }
 
-    private static void gameLoop(ArrayList<String> players, NimGame game) {
+    private static void gameLoop(NimGame game) {
         int tour = 0;
         while(noWinner(game)) {
-            String player = getNextPlayer(players, tour);
+            String player = getNextPlayer(game.players(), tour);
             String stickToRemove = System.console().readLine();
             if (!game.play(player, stickToRemove)) {
                 System.out.println("Je n'ai pas réussi à enlever " + stickToRemove + " allumettes");

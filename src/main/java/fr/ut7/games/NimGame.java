@@ -37,6 +37,10 @@ public class NimGame {
         return true;
     }
 
+    public ArrayList<String> players() {
+        return players;
+    }
+
     private String getSecondToLast() {
         if (lastPlayer.equals(players.get(0))) {
             return players.get(1);
@@ -51,4 +55,5 @@ public class NimGame {
     private boolean notEnoughPlayer(ArrayList<String> players) {
         return players.size() != PLAYER_NUMBER;
     }
+
 }
