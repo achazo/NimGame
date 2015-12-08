@@ -2,31 +2,22 @@ package fr.ut7.games;
 
 import java.util.ArrayList;
 
-public class NimGame {
-    public static final int PLAYER_NUMBER = 2;
+public class NimGame extends MultiPlayerGame {
     public static final String NO_WINNER = "";
 
     private int stickNumber;
-    private String lastPlayer;
-    private ArrayList<String> players;
 
     public NimGame(ArrayList<String> initialPlayers, int initialStickNumber) throws NoPlayerException {
+        super(initialPlayers);
         stickNumber = initialStickNumber;
-        if (notEnoughPlayer(initialPlayers)) {
-            throw new NoPlayerException();
-        }
-        players = initialPlayers;
+
     }
 
     public NimGame(int initialStickNumber) {
+        super();
         stickNumber = initialStickNumber;
-        players = new ArrayList<String>();
     }
 
-    public String winner() {
-        if (noMoreStick()) return getSecondToLast();
-        return NO_WINNER;
-    }
 
     public void play(String player, int stickToRemove) {
         lastPlayer = player;
@@ -42,34 +33,28 @@ public class NimGame {
         return true;
     }
 
-    public ArrayList<String> players() {
-        return players;
-    }
-
-    private String getSecondToLast() {
-        if (lastPlayer.equals(players.get(0))) {
-            return players.get(1);
-        }
-        return players.get(0);
+    public int availableSticks() {
+        return stickNumber;
     }
 
     private boolean noMoreStick() {
         return stickNumber <= 0;
     }
 
-    private boolean notEnoughPlayer(ArrayList<String> players) {
-        return players.size() != PLAYER_NUMBER;
+    @Override
+    public String winner() {
+        if (noMoreStick()) return getSecondToLast();
+        return NO_WINNER;
     }
 
-    public String getNextPlayer(int tour) {
-        return players.get(tour % 2);
+
+    private String lastPlayer;
+
+    private String getSecondToLast() {
+        if (lastPlayer.equals(players().get(0))) {
+            return players().get(1);
+        }
+        return players().get(0);
     }
 
-    public int availableSticks() {
-        return stickNumber;
-    }
-
-    public void addPlayer(String playerName) {
-        players.add(playerName);
-    }
 }

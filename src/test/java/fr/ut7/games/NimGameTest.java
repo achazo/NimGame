@@ -42,16 +42,6 @@ public class NimGameTest {
     }
 
     @Test
-    public void withoutTwoPLayerThrowException() {
-        try {
-            game = new NimGame(new ArrayList<String>(), 12);
-            fail("No player exception expected");
-        } catch (NoPlayerException pasdejoueur) {
-            assertThat(pasdejoueur.getMessage(), is("Il faut deux joueurs"));
-        }
-    }
-
-    @Test
     public void canPlayWithAString() {
         assertTrue(game.play("j1", "2"));
     }
@@ -62,21 +52,6 @@ public class NimGameTest {
     }
 
     @Test
-    public void getPlayers() {
-        assertEquals(players, game.players());
-    }
-
-    @Test
-    public void nextPLayerForRound1IsFirstPlayer() {
-        assertEquals(players.get(0), game.getNextPlayer(0));
-    }
-
-    @Test
-    public void nextPLayerForRound2IsSecondPlayer() {
-        assertEquals(players.get(1), game.getNextPlayer(1));
-    }
-
-    @Test
     public void availableSticks() throws NoPlayerException {
         game = new NimGame(players, 10);
         assertEquals(10, game.availableSticks());
@@ -84,10 +59,4 @@ public class NimGameTest {
         assertEquals(8, game.availableSticks());
     }
 
-    @Test
-    public void addPlayerInGame() throws NoPlayerException {
-        game = new NimGame(10);
-        game.addPlayer("joueur1");
-        assertTrue(game.players().contains("joueur1"));
-    }
 }
