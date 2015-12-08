@@ -32,7 +32,7 @@ public class MultiPlayerGame {
     }
 
     public String getNextPlayer(int tour) {
-        return players().get(tour % 2);
+        return players().get(tour % PLAYER_NUMBER);
     }
 
     private boolean notEnoughPlayer(ArrayList<String> players) {

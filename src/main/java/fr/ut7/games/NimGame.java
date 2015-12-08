@@ -2,22 +2,21 @@ package fr.ut7.games;
 
 import java.util.ArrayList;
 
-public class NimGame extends MultiPlayerGame {
+public class NimGame {
     public static final String NO_WINNER = "";
 
     private int stickNumber;
+    private MultiPlayerGame multiPlayerGame;
 
     public NimGame(ArrayList<String> initialPlayers, int initialStickNumber) throws NoPlayerException {
-        super(initialPlayers);
+        multiPlayerGame = new MultiPlayerGame(initialPlayers);
         stickNumber = initialStickNumber;
-
     }
 
     public NimGame(int initialStickNumber) {
-        super();
+        multiPlayerGame = new MultiPlayerGame();
         stickNumber = initialStickNumber;
     }
-
 
     public void play(String player, int stickToRemove) {
         lastPlayer = player;
@@ -41,12 +40,10 @@ public class NimGame extends MultiPlayerGame {
         return stickNumber <= 0;
     }
 
-    @Override
     public String winner() {
         if (noMoreStick()) return getSecondToLast();
         return NO_WINNER;
     }
-
 
     private String lastPlayer;
 
@@ -57,4 +54,15 @@ public class NimGame extends MultiPlayerGame {
         return players().get(0);
     }
 
+    private ArrayList<String> players() {
+        return multiPlayerGame.players();
+    }
+
+    public void addPlayer(String playerName) {
+        multiPlayerGame.addPlayer(playerName);
+    }
+
+    public String getNextPlayer(int tour) {
+        return multiPlayerGame.getNextPlayer(tour);
+    }
 }
