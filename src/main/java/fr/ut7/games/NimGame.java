@@ -56,4 +56,7 @@ public class NimGame {
         return players.size() != PLAYER_NUMBER;
     }
 
+    public String getNextPlayer(int tour) {
+        return players.get(tour % 2);
+    }
 }

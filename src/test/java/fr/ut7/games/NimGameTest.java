@@ -14,7 +14,7 @@ public class NimGameTest {
     private NimGame game;
 
     @Before
-    public void setUp() throws Exception, NoPlayerException {
+    public void setUp() throws NoPlayerException {
         players = new ArrayList<String>();
         players.add("joueur1");
         players.add("joueur2");
@@ -22,7 +22,7 @@ public class NimGameTest {
     }
 
     @Test
-    public void noWinnerWhenGameStart() throws NoPlayerException {
+    public void noWinnerWhenGameStart() {
         assertEquals("", game.winner());
     }
 
@@ -52,18 +52,28 @@ public class NimGameTest {
     }
 
     @Test
-    public void canPlayWithAString() throws NoPlayerException {
+    public void canPlayWithAString() {
         assertTrue(game.play("j1", "2"));
     }
 
     @Test
-    public void cantPlayWithAStringNotANumber() throws NoPlayerException {
+    public void cantPlayWithAStringNotANumber() {
         assertFalse(game.play("j1", "e"));
     }
 
     @Test
-    public void getPlayers() throws NoPlayerException {
+    public void getPlayers() {
         assertEquals(players, game.players());
     }
 
+    @Test
+    public void nextPLayerForRound1IsFirstPlayer() {
+        assertEquals(players.get(0), game.getNextPlayer(0));
+    }
+
+    @Test
+    public void nextPLayerForRound2IsSecondPlayer() {
+        assertEquals(players.get(1), game.getNextPlayer(1));
+
+    }
 }

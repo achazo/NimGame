@@ -17,7 +17,10 @@ public class NimGameConsole {
     private static void gameLoop(NimGame game) {
         int tour = 0;
         while(noWinner(game)) {
-            String player = getNextPlayer(game.players(), tour);
+            System.out.println("Ceci est le tour numéro : " + tour);
+            String player = game.getNextPlayer(tour);
+            System.out.println(player + " c'est ton tour");
+
             String stickToRemove = System.console().readLine();
             if (!game.play(player, stickToRemove)) {
                 System.out.println("Je n'ai pas réussi à enlever " + stickToRemove + " allumettes");
@@ -26,13 +29,6 @@ public class NimGameConsole {
             tour += 1;
         }
         System.out.println("C'est " + game.winner() + " qui a gagné");
-    }
-
-    private static String getNextPlayer(ArrayList<String> players, int tour) {
-        System.out.println("Ceci est le tour numéro : " + tour);
-        String joueur = players.get(tour % 2);
-        System.out.println(joueur + " c'est ton tour");
-        return joueur;
     }
 
     private static String getPlayerName() {
