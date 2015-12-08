@@ -8,28 +8,44 @@ public class NimGameConsole {
         System.out.println("Ici c'est pour tester des trucs");
 
         ArrayList<String> players = new ArrayList<String>();
-
-        System.out.println("Entrez le nom du joueur 1 : ");
-        String nomJoueur1 = System.console().readLine();
-        System.out.println("Bonjour " + nomJoueur1);
-        players.add(nomJoueur1);
-        System.out.println("Entrez le nom du joueur 2 : ");
-        String nomJoueur2 = System.console().readLine();
-        System.out.println("Bonjour " + nomJoueur2);
-        players.add(nomJoueur2);
+        players.add(getPlayerName());
+        players.add(getPlayerName());
 
         NimGame game = new NimGame(players, 10);
 
+        gameLoop(players, game);
+    }
+
+    private static void gameLoop(ArrayList<String> players, NimGame game) {
         int tour = 0;
-        String joueur;
-        while(game.winner().equals("")) {
-            System.out.println("Ceci est le tour numéro : " + tour);
-            joueur = players.get(tour % 2);
-            System.out.println(joueur + " c'est ton tour");
+        while(noWinner(game)) {
             String input = System.console().readLine();
-            game.play(joueur, Integer.parseInt(input));
-            System.out.println("C'est " + game.winner() + " qui a gagné");
+            try {
+                game.play(getNextPlayer(players, tour), Integer.parseInt(input));
+            } catch (NumberFormatException exception) {
+                System.out.println("Ceci n'est pas un entier !");
+                continue;
+            }
             tour += 1;
         }
+        System.out.println("C'est " + game.winner() + " qui a gagné");
+    }
+
+    private static String getNextPlayer(ArrayList<String> players, int tour) {
+        System.out.println("Ceci est le tour numéro : " + tour);
+        String joueur = players.get(tour % 2);
+        System.out.println(joueur + " c'est ton tour");
+        return joueur;
+    }
+
+    private static String getPlayerName() {
+        System.out.println("Entrez le nom d'un joueur : ");
+        String playerName = System.console().readLine();
+        System.out.println("Bonjour " + playerName);
+        return playerName;
+    }
+
+    private static boolean noWinner(NimGame game) {
+        return game.winner().equals("");
     }
 }
