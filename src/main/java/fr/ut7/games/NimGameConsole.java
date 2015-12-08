@@ -18,6 +18,7 @@ public class NimGameConsole {
         int tour = 0;
         while(noWinner(game)) {
             System.out.println("Ceci est le tour numéro : " + tour);
+            System.out.println("Il reste " + game.availableSticks() + " allumettes");
             String player = game.getNextPlayer(tour);
             System.out.println(player + " c'est ton tour");
 

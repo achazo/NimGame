@@ -74,6 +74,13 @@ public class NimGameTest {
     @Test
     public void nextPLayerForRound2IsSecondPlayer() {
         assertEquals(players.get(1), game.getNextPlayer(1));
+    }
 
+    @Test
+    public void availableSticks() throws NoPlayerException {
+        game = new NimGame(players, 10);
+        assertEquals(10, game.availableSticks());
+        game.play(players.get(0), 2);
+        assertEquals(8, game.availableSticks());
     }
 }

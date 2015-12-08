@@ -8,5 +8,5 @@ Pour jouer en console:
 
 ## TODO
 
-* pouvoir choisir le nombre d'allumettes
-* afficher combien il reste d'allumettes
+* pouvoir choisir le nombre d'allumettes de départ
+* limiter le nombre d'allumettes que l'on peut enlever

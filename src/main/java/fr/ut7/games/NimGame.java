@@ -59,4 +59,8 @@ public class NimGame {
     public String getNextPlayer(int tour) {
         return players.get(tour % 2);
     }
+
+    public int availableSticks() {
+        return stickNumber;
+    }
 }
