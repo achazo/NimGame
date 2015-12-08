@@ -8,6 +8,5 @@ Pour jouer en console:
 
 ## TODO
 
-* pouvoir saisir le nom des joueurs
 * pouvoir choisir le nombre d'allumettes
 * afficher combien il reste d'allumettes
