@@ -18,6 +18,11 @@ public class NimGame {
         players = initialPlayers;
     }
 
+    public NimGame(int initialStickNumber) {
+        stickNumber = initialStickNumber;
+        players = new ArrayList<String>();
+    }
+
     public String winner() {
         if (noMoreStick()) return getSecondToLast();
         return NO_WINNER;
@@ -62,5 +67,9 @@ public class NimGame {
 
     public int availableSticks() {
         return stickNumber;
+    }
+
+    public void addPlayer(String playerName) {
+        players.add(playerName);
     }
 }

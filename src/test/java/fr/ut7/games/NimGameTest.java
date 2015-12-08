@@ -83,4 +83,11 @@ public class NimGameTest {
         game.play(players.get(0), 2);
         assertEquals(8, game.availableSticks());
     }
+
+    @Test
+    public void addPlayerInGame() throws NoPlayerException {
+        game = new NimGame(10);
+        game.addPlayer("joueur1");
+        assertTrue(game.players().contains("joueur1"));
+    }
 }

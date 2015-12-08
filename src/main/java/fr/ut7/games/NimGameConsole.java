@@ -7,10 +7,9 @@ public class NimGameConsole {
     public static void main(String[] args) throws NoPlayerException {
         System.out.println("Ici c'est pour tester des trucs");
 
-        ArrayList<String> players = new ArrayList<String>();
-        players.add(getPlayerName());
-        players.add(getPlayerName());
-        NimGame game = new NimGame(players, 10);
+        NimGame game = new NimGame(10);
+        game.addPlayer(getPlayerName());
+        game.addPlayer(getPlayerName());
         gameLoop(game);
     }
 
