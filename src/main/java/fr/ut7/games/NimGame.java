@@ -2,7 +2,7 @@ package fr.ut7.games;
 
 import java.util.ArrayList;
 
-public class NimGame {
+public class NimGame implements Game {
     public static final String NO_WINNER = "";
 
     private int stickNumber;
@@ -54,8 +54,12 @@ public class NimGame {
         return players().get(0);
     }
 
-    private ArrayList<String> players() {
+    public ArrayList<String> players() {
         return multiPlayerGame.players();
+    }
+
+    public String justAWord() {
+        return "Ceci est un test dans le NimGame";
     }
 
     public void addPlayer(String playerName) {
@@ -65,4 +69,5 @@ public class NimGame {
     public String getNextPlayer(int tour) {
         return multiPlayerGame.getNextPlayer(tour);
     }
+
 }

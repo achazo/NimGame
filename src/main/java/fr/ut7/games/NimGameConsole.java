@@ -38,7 +38,7 @@ public class NimGameConsole {
         return playerName;
     }
 
-    private static boolean noWinner(NimGame game) {
+    private static boolean noWinner(Game game) {
         return game.winner().equals("");
     }
 }
