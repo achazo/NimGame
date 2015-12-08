@@ -10,20 +10,17 @@ public class NimGameConsole {
         ArrayList<String> players = new ArrayList<String>();
         players.add(getPlayerName());
         players.add(getPlayerName());
-
         NimGame game = new NimGame(players, 10);
-
         gameLoop(players, game);
     }
 
     private static void gameLoop(ArrayList<String> players, NimGame game) {
         int tour = 0;
         while(noWinner(game)) {
-            String input = System.console().readLine();
-            try {
-                game.play(getNextPlayer(players, tour), Integer.parseInt(input));
-            } catch (NumberFormatException exception) {
-                System.out.println("Ceci n'est pas un entier !");
+            String player = getNextPlayer(players, tour);
+            String stickToRemove = System.console().readLine();
+            if (!game.play(player, stickToRemove)) {
+                System.out.println("Je n'ai pas réussi à enlever " + stickToRemove + " allumettes");
                 continue;
             }
             tour += 1;

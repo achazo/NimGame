@@ -5,9 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class NimGameTest {
 
@@ -31,7 +29,6 @@ public class NimGameTest {
         assertEquals("joueur1", game.winner());
     }
 
-
     @Test
     public void playerTwoWin() throws NoPlayerException {
         ArrayList<String> players = new ArrayList<String>();
@@ -50,6 +47,24 @@ public class NimGameTest {
         } catch (NoPlayerException pasdejoueur) {
             assertThat(pasdejoueur.getMessage(), is("Il faut deux joueurs"));
         }
+    }
+
+    @Test
+    public void canPlayWithAString() throws NoPlayerException {
+        ArrayList<String> players = new ArrayList<String>();
+        players.add("j1");
+        players.add("j2");
+        NimGame game = new NimGame(players, 10);
+        assertTrue(game.play("j1", "2"));
+    }
+
+    @Test
+    public void cantPlayWithAStringNotANumber() throws NoPlayerException {
+        ArrayList<String> players = new ArrayList<String>();
+        players.add("j1");
+        players.add("j2");
+        NimGame game = new NimGame(players, 10);
+        assertFalse(game.play("j1", "e"));
     }
 
 }

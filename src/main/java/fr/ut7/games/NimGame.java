@@ -30,4 +30,13 @@ public class NimGame {
         lastPlayer = player;
         stickNumber = stickNumber - stickToRemove;
     }
+
+    public boolean play(String player, String stickToRemoveString) {
+        try {
+            play(player, Integer.parseInt(stickToRemoveString));
+        } catch (NumberFormatException exception) {
+            return false;
+        }
+        return true;
+    }
 }
